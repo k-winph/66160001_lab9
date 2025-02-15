@@ -125,3 +125,25 @@ body {
   .comment-btn:hover {
     background-color: #2ba846;
   }
+
+hr {
+    margin-bottom: 15px;
+}
+.comments-list {
+    margin-top: 15px;
+}
+.comment-item {
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.comment-item strong {
+    color: #2f4879;
+    font-size: 16px;
+}
+.comment-item p {
+    font-size: 14px;
+    color: #333;
+}

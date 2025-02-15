@@ -23,10 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 posts.forEach(post => {
                     const postItem = document.createElement("div");
                     postItem.classList.add("post-item");
+                    postItem.setAttribute("data-post-id", post.id);
                     postItem.innerHTML = `
                         <h3>${post.title}</h3>
                         <p>${post.body}</p>
-                        <button class="comment-btn")">ดูความคิดเห็น</button>
+                        <button class="comment-btn" onclick="loadComments(${post.id})">ดูความคิดเห็น</button>
                     `;
                     postsList.appendChild(postItem);
                 });
@@ -34,3 +35,30 @@ document.addEventListener("DOMContentLoaded", () => {
             .catch(error => console.error("Error fetching posts:", error));
     }
 });
+
+function loadComments(postId) {
+    fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
+        .then(response => response.json())
+        .then(comments => {
+            const postItem = document.querySelector(`.post-item[data-post-id="${postId}"]`);
+            const commentSection = document.createElement("div");
+            commentSection.classList.add("comments-list");
+            commentSection.innerHTML = "<hr>";
+
+            if (comments.length === 0) {
+                commentSection.innerHTML = "<p>ยังไม่มีความคิดเห็น</p>";
+            } else {
+                comments.forEach(comment => {
+                    const commentItem = document.createElement("div");
+                    commentItem.classList.add("comment-item");
+                    commentItem.innerHTML = `
+                        <p><strong>${comment.email}</strong><br> ${comment.body}</p>
+                    `;
+                    commentSection.appendChild(commentItem);
+                });
+            }
+
+            postItem.appendChild(commentSection);
+        })
+    .catch(error => console.error("Error fetching comments:", error));
+}
