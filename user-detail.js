@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const userDetail = document.getElementById("user-detail");
           userDetail.innerHTML = `
             <h2>${user.name}</h2>
+            <hr>
             <p><strong>อีเมล</strong><br> ${user.email}</p>
             <p><strong>ชื่อผู้ใช้</strong><br> ${user.username}</p>
             <p><strong>เบอร์โทรศัพท์</strong><br> ${user.phone}</p>

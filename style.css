@@ -24,12 +24,13 @@ body {
   .user-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
   }
   .user-item {
-    background: #f5f5f5;
+    background: #f9f9f9;
     padding: 10px;
     border-radius: 8px;
+    border-left: 5px solid #4e8fd5;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: left;
   }
@@ -54,8 +55,9 @@ body {
     text-decoration: underline;
   }
   .user-detail {
-    background: #f5f5f5;
+    background: #f9f9f9;
     padding: 20px;
+    border-left: 5px solid #4e8fd5;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
@@ -139,6 +141,7 @@ hr {
     background: #f9f9f9;
     padding: 10px;
     border-radius: 5px;
+    border-left: 5px solid #366292;
     margin-bottom: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
