@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     postItem.innerHTML = `
                         <h3>${post.title}</h3>
                         <p>${post.body}</p>
-                        <button class="comment-btn" onclick="loadComments(${post.id})">ดูความคิดเห็น</button>
+                        <button class="comment-btn" onclick="toggleComments(${post.id}, this)">ดูความคิดเห็น</button>
                     `;
                     postsList.appendChild(postItem);
                 });
@@ -36,13 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-function loadComments(postId) {
+function toggleComments(postId, button) {
+    const postItem = document.querySelector(`.post-item[data-post-id="${postId}"]`);
+    const existingCommentSection = postItem.querySelector(".comments-list");
+
+    if (existingCommentSection) {
+        existingCommentSection.remove();
+        button.textContent = "ดูความคิดเห็น";
+    } else {
     fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
         .then(response => response.json())
         .then(comments => {
-            const postItem = document.querySelector(`.post-item[data-post-id="${postId}"]`);
             const commentSection = document.createElement("div");
             commentSection.classList.add("comments-list");
+
             commentSection.innerHTML = "<hr>";
 
             if (comments.length === 0) {
@@ -59,6 +66,8 @@ function loadComments(postId) {
             }
 
             postItem.appendChild(commentSection);
+            button.textContent = "ซ่อนความคิดเห็น";
         })
     .catch(error => console.error("Error fetching comments:", error));
+    }
 }
