@@ -20,10 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => console.error("Error fetching user details:", error));
     }
   
-    /*document.getElementById("view-posts").addEventListener("click", () => {
+    document.getElementById("view-posts").addEventListener("click", () => {
       if (userId) {
         window.location.href = `user-posts.html?userId=${userId}`;
       }
-    });*/
+    });
   });
   
